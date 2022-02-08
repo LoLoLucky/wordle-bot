@@ -16,11 +16,11 @@ let score=(guess, answer)=> {
 }
 
 let best_guess =(guesses, answers)=> {
-	let goodness =p=> -Math.log2(p) * p
+	let goodness =(p)=> Math.pow(n, 2) + Math.pow(l-n, 2)
 
 	let ratings = guesses.map(guess=> 
 		answers.map(answer => score(guess, answer))
-			.reduce((a,score)=> a + goodness(answers.length, answers.filter(v=> v==score)), 0)
+			.reduce((a,score)=> a + prob(answers.length, answers.filter(v=> v==score)), 0)
 	)
 
 	let best = Math.max(...ratings)

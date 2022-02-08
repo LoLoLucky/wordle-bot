@@ -16,7 +16,7 @@ let score=(guess, answer)=> {
 }
 
 let best_guess =(guesses, answers)=> {
-	let goodness =p=> Math.pow(n, 2) + Math.pow(l-n, 2)
+	let goodness =(l,n)=> Math.pow(n, 2) + Math.pow(l-n, 2)
 
 	let ratings = guesses.map(guess=> 
 		answers.map(answer => score(guess, answer))

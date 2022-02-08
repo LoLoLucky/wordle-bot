@@ -7,9 +7,10 @@ let guesses = 'aahed,aalii,aargh,aarti,abaca,abaci,abacs,abaft,abaka,abamp,aband
 guesses = guesses.split(',')
 
 let score=(guess, answer)=> {
+	let extra = [...answer].map((l,i)=>l != guess[i]? l : 0).join('')
 	return [...guess].map((l,i)=> 
 		l == answer[i] ? 'g' 
-		: guess.slice(0,i).split(l).length < answer.split(l).length ? 'y' 
+		: guess.slice(0,i).split(l).length < extra.split(l).length ? 'y' 
 		: '-'
 	).join('')
 }
@@ -59,6 +60,6 @@ document.addEventListener('keydown', e=> {
 			answers = answers.filter(answer=> scoring == score(guess, answer))
 		}
 		letters = best_guess(guesses, answers)
-		type(best_guess(guesses, answers))
+		type(letters)
 	}
 });

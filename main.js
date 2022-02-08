@@ -6,7 +6,7 @@
 	let answers = load('answers')
 	let guesses = load('guesses')
 
-	print(answers)
+	console.log(answers)
 
 	let score=(guess, answer)=> {
 		let extra = [...answer].map((l,i)=>l != guess[i]? l : 0).join('')

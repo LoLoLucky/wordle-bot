@@ -20,7 +20,7 @@ let best_guess =(guesses, answers)=> {
 
 	let ratings = guesses.map(guess=> 
 		answers.map(answer => score(guess, answer))
-			.reduce((a,score)=> a + prob(answers.length, answers.filter(v=> v==score)), 0)
+			.reduce((a,score)=> a + goodness(answers.length, answers.filter(v=> v==score)), 0)
 	)
 
 	let best = Math.max(...ratings)

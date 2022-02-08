@@ -15,6 +15,8 @@ let score=(guess, answer)=> {
 }
 
 let best_guess =(guesses, answers)=> {
+	console.log(answers)
+
 	let goodness =p=> 2 * p * (1-p)
 
 	let ratings = guesses.map(guess=> 

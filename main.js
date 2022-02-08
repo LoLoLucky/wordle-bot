@@ -3,8 +3,8 @@
 
 	let load = async name=> (await fetch(`https://raw.githubusercontent.com/LoLoLucky/wordle-bot/main/${name}.csv`).then(data=> data.text())).split(',')
 
-	let answers = load('answers')
-	let guesses = load('guesses')
+	let answers = await load('answers')
+	let guesses = await load('guesses')
 
 	console.log(answers)
 

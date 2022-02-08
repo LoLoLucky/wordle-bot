@@ -16,19 +16,16 @@ let score=(guess, answer)=> {
 }
 
 let best_guess =(guesses, answers)=> {
-	console.log(answers)
-
 	let goodness =p=> 2 * p * (1-p)
 
 	let ratings = guesses.map(guess=> 
-		answers.map(answer => score(guess, answer))
+		answers.map(answer=> score(guess, answer))
 			.map(score=> (p=> p * (1-p))(answers.filter(v=> v==score).length / answers.length))
 			.reduce((a,b)=> a+b)
 	)
 
-	let best = Math.max(...ratings)
-	let best_guesses = guesses.filter((_,i)=> ratings[i] == best)
-	return best_guesses.filter((guess) => answers.some(answer=> answer == guess))[0] || best_guesses[0]
+	let best_guesses = guesses.filter((_,i)=> ratings[i] == Math.max(...ratings))
+	return best_guesses.filter(guess=> answers.some(answer=> answer == guess))[0] || best_guesses[0]
 }
 
 let type =word=>
@@ -49,9 +46,7 @@ let get_scoring =tiles=>
 document.addEventListener('keydown', e=> {
 	if(e.code == 'Space') {
 		for(let i = 0; i<5; i++) {
-			let row = document.querySelector('game-app').shadowRoot
-							  .querySelector('game-theme-manager')
-							  .querySelectorAll('game-row')[i]
+			let row = get_row(i)
 			let tiles = row.shadowRoot.querySelectorAll('game-tile')
 			if(!tiles[0].hasAttribute('reveal'))
 				break

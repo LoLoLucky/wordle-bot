@@ -1,4 +1,4 @@
-async () => {
+(async () => {
 	console.log('press space to fill in a word')
 
 	let load = async name=> (await fetch(`https://raw.githubusercontent.com/LoLoLucky/wordle-bot/main/${name}.csv`).then(data=> data.text())).split(',')
@@ -60,4 +60,4 @@ async () => {
 			type(letters)
 		}
 	});
-}
+})()

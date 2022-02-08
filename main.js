@@ -1,7 +1,9 @@
 console.log('press space to fill in a word')
 
-let answers = await fetch('https://raw.githubusercontent.com/LoLoLucky/wordle-bot/main/answers.csv').then(data=> data.text().split(','))
-let guesses = await fetch('https://raw.githubusercontent.com/LoLoLucky/wordle-bot/main/guesses.csv').then(data=> data.text().split(','))
+let load =name=> (await fetch(`https://raw.githubusercontent.com/LoLoLucky/wordle-bot/main/${name}.csv`).then(data=> data.text())).split(',')
+
+let answers = load('answers')
+let guesses = load('guesses')
 
 let score=(guess, answer)=> {
 	let extra = [...answer].map((l,i)=>l != guess[i]? l : 0).join('')

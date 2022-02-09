@@ -38,7 +38,7 @@
 				if(!tiles[0].hasAttribute('reveal'))
 					break
 				let guess = row.getAttribute('letters')
-				let scoring = [...tiles].map(v=> ({'correct':'g', 'present':'y'})[e.getAttribute('evaluation')] ?? '-').join('')
+				let scoring = [...tiles].map(v=> ({'correct':'g', 'present':'y'})[v.getAttribute('evaluation')] ?? '-').join('')
 				answers = answers.filter(answer=> scoring == score(guess, answer))
 			}
 			type(best_guess(guesses, answers))

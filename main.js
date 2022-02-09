@@ -16,8 +16,7 @@
 	let best_guess =(guesses, answers)=> {
 		let ratings = guesses.map(guess=> 
 			answers.map(answer=> score(guess, answer))
-				.reduce((a,score)=> a+(p=> p * (1-p))(answers.filter(v=> v==score).length / answers.length),0)
-		)
+				.reduce((a,score)=> a + (p=> p * (1-p))(answers.filter(v=> v==score).length / answers.length), 0))
 
 		let best_guesses = guesses.filter((_,i)=> ratings[i] == Math.max(...ratings))
 		return best_guesses.filter(guess=> answers.some(answer=> answer == guess))[0] || best_guesses[0]

@@ -4,17 +4,13 @@
 	let answers = await load('answers')
 	let guesses = await load('guesses')
 	
-	String.prototype.map = function (fn) {
-		return [...this].map(fn)
-	}
-	
 	let score=(guess, answer)=> {
-		let extra = answer.map((l,i)=> l != guess[i]? l : 0)
-		return guess.map((l,i)=> 
+		let extra = [...answer].map((l,i)=> l != guess[i]? l : 0).join('')
+		return [...guess].map((l,i)=> 
 			l == answer[i] ? 'g' 
 			: guess.slice(0,i).split(l).length < extra.split(l).length ? 'y' 
 			: '-'
-		)
+		).join('')
 	}
 
 	let best_guess =(guesses, answers)=> {
@@ -42,7 +38,7 @@
 				if(!tiles[0].hasAttribute('reveal'))
 					break
 				let guess = row.getAttribute('letters')
-				let scoring = tiles.map(v=> ({'correct':'g', 'present':'y'})[e.getAttribute('evaluation')] ?? '-')
+				let scoring = [...tiles].map(v=> ({'correct':'g', 'present':'y'})[e.getAttribute('evaluation')] ?? '-').join('')
 				answers = answers.filter(answer=> scoring == score(guess, answer))
 			}
 			type(best_guess(guesses, answers))

@@ -29,7 +29,8 @@
 	
 	document.addEventListener('keydown', e=> {
 		if(e.code == 'Space') {
-			for(let i = 0; i<5; i++) {
+			let i = 0;
+			for(; i<5; i++) {
 				let row = document
 					.querySelector('game-app').shadowRoot
 					.querySelector('game-theme-manager')
@@ -41,7 +42,10 @@
 				let scoring = [...tiles].map(v=> ({'correct':'g', 'present':'y'})[v.getAttribute('evaluation')] ?? '-').join('')
 				answers = answers.filter(answer=> scoring == score(guess, answer))
 			}
-			type(best_guess(guesses, answers))
+			if(i == 0)
+				type('soare')
+			else
+				type(best_guess(guesses, answers))
 		}
 	});
 })()
